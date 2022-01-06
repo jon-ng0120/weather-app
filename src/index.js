@@ -3,9 +3,6 @@
 import { fromUnixTime } from 'date-fns';
 import { formatInTimeZone } from 'date-fns-tz';
 
-// console.log(fromUnixTime(1641362400 + tz).toUTCString());
-// console.log(fromUnixTime(1641362400 + tz));
-
 const cityInput = document.querySelector('#city');
 const submit = document.querySelector('#submit');
 const errorMessage = document.querySelector('#error-message');
@@ -71,7 +68,6 @@ const getCityDateTime = (unixTime, timeZone) => {
     formatInTimeZone(dateTime, timeZone, 'HH'),
     formatInTimeZone(dateTime, timeZone, 'mm')
   );
-  console.log(date);
   return date;
 };
 
@@ -126,6 +122,9 @@ const getCityDataByName = async (cityName) => {
       { mode: 'cors' }
     );
     const data = await response.json();
+    errorMessage.textContent = '';
+    cityInput.value = '';
+    cityInput.style.border = 'none';
     return getCityWeather(
       data.name,
       data.sys.country,
@@ -133,7 +132,11 @@ const getCityDataByName = async (cityName) => {
       data.coord.lon
     );
   } catch (err) {
-    console.log(err);
+    cityInput.style.border = '1px solid red';
+    errorMessage.innerHTML = `
+      Location cannot be found<br>
+      Format search to be "City", or "City, State"
+    `;
   }
 };
 
@@ -152,32 +155,6 @@ const getCityDataByCurrentLocation = async (lat, lon) => {
     );
   } catch (err) {
     console.log(err);
-  }
-};
-
-const getCityData = async (cityName) => {
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=825c62a98c0ddf6dc90d3b25d56c1adb`,
-      { mode: 'cors' }
-    );
-    const data = await response.json();
-
-    errorMessage.textContent = '';
-    cityInput.value = '';
-    cityInput.style.border = 'none';
-    return getCityWeather(
-      data.name,
-      data.sys.country,
-      data.coord.lat,
-      data.coord.lon
-    );
-  } catch (err) {
-    cityInput.style.border = '1px solid red';
-    errorMessage.innerHTML = `
-      Location cannot be found<br>
-      Format search to be "City", or "City, State"
-    `;
   }
 };
 
@@ -223,9 +200,6 @@ submit.addEventListener('click', async (e) => {
     cityInput.style.border = '1px solid red';
   } else {
     await getCityDataByName(cityInput.value);
-    errorMessage.textContent = '';
-    cityInput.value = '';
-    cityInput.style.border = 'none';
   }
 });
 
