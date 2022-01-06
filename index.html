@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/14abda17c3.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <header>
+      <div class="left"></div>
+      <div id="city-search">
+        <div id="search-container">
+          <input
+            id="city"
+            type="text"
+            placeholder="Search with 'City' or 'City, Country'"
+          />
+          <div id="submit">
+            <span class="material-icons-outlined">search</span>
+          </div>
+        </div>
+
+        <p id="error-message"></p>
+      </div>
+      <div id="toggles-container" class="right">
+        <label class="degree-toggle" for="degree-toggle-check">
+          <input
+            type="checkbox"
+            id="degree-toggle-check"
+            class="toggle-input"
+          />
+          <div class="toggle-fill">
+            <span>F</span>
+            <span>C</span>
+          </div>
+        </label>
+      </div>
+    </header>
+    <div id="loader-container">
+      <div id="loader"></div>
+      <p>Allow use of current location or search for a city</p>
+    </div>
+    <div id="today-container">
+      <div id="today-weather">
+        <h1 id="city-name"></h1>
+        <p id="date"></p>
+        <p id="time"></p>
+        <div id="today-weather-image">
+          <img id="weather-icon" src="" alt="" />
+
+          <div>
+            <h2 id="weather-description"></h2>
+            <h2 id="current-temp" class="degree"></h2>
+            <span id="high" class="degree"></span>
+            <span> / </span>
+            <span id="low" class="degree"></span>
+          </div>
+        </div>
+      </div>
+      <div id="today-weather-detailed">
+        <div>
+          <p>TEMP</p>
+          <p id="feels-like" class="degree"></p>
+        </div>
+        <div>
+          <p>POP</p>
+          <p id="pop"></p>
+        </div>
+        <div>
+          <p>SUNRISE</p>
+          <p id="sunrise"></p>
+        </div>
+        <div>
+          <p>WIND</p>
+          <p id="wind"></p>
+        </div>
+        <div>
+          <p>HUMIDITY</p>
+          <p id="humidity"></p>
+        </div>
+        <div>
+          <p>SUNSET</p>
+          <p id="sunset"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="forecast">
+      <div id="forecast-choice">
+        <p id="daily" class="active-forecast-choice">Daily</p>
+        <p id="hourly">Hourly</p>
+      </div>
+      <div class="forecast-container" id="daily-container">
+        <ul>
+          <li class="forecast-header">
+            <p>Day</p>
+            <p>Weather</p>
+            <p>POP</p>
+            <p>Wind</p>
+            <p>Temp</p>
+          </li>
+        </ul>
+      </div>
+      <div id="hourly-container">
+        <ul>
+          <li class="forecast-header">
+            <p>Hour</p>
+            <p>Weather</p>
+            <p>POP</p>
+            <p>Wind</p>
+            <p>Feels Like</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
